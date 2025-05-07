@@ -3,7 +3,9 @@
  * 用于连接后端服务器进行数据交互
  */
 
-const API_URL = 'http://localhost:9000/api';
+const API_URL = typeof window === 'undefined' || process.env.NODE_ENV === 'production'
+  ? '/api'
+  : 'http://localhost:9000/api';
 
 // 获取当前用户信息
 export const getCurrentUser = async () => {
