@@ -1,0 +1,981 @@
+/* 霓虹效果 */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  letter-spacing: 2px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 主体字体 */
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  color: #e0ffff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 文字增强可读性 */
+.text-cyan-50,
+.text-cyan-100,
+.text-cyan-300,
+.text-cyan-400 {
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.9), 0 0 5px rgba(0, 255, 255, 0.3);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.text-pink-50,
+.text-pink-100,
+.text-pink-300,
+.text-pink-400 {
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.9), 0 0 5px rgba(255, 0, 255, 0.3);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 加载动画相关样式 */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0a0a16;
+  z-index: 9999;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.03) 0%, transparent 25%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.03) 0%, transparent 25%),
+    repeating-linear-gradient(to bottom, transparent 0px, rgba(0, 255, 255, 0.02) 1px, transparent 2px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  max-width: 500px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.loading-logo {
+  margin-bottom: 3rem;
+  position: relative;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.8rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #3fffff 30%, #ff00ff 70%, #3fffff 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: cyber-flow 3s linear infinite;
+  position: relative;
+  text-shadow: 
+    0 0 5px rgba(63, 255, 255, 0.5),
+    0 0 10px rgba(63, 255, 255, 0.3),
+    0 0 20px rgba(255, 0, 255, 0.3);
+  letter-spacing: 4px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 赛博朋克进度条容器 */
+.cyber-progress-container {
+  width: 100%;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  position: relative;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  padding: 0 5px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 进度条 */
+.cyber-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 255, 255, 0.2), rgba(0, 255, 255, 0.8));
+  width: 0%;
+  animation: progressAnimation 2s ease-in-out forwards;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 10px) 0,
+    100% 10px,
+    100% 100%,
+    10px 100%,
+    0 calc(100% - 10px)
+  );
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 进度条扫描线 */
+.cyber-progress-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00ffff;
+  opacity: 0.8;
+  animation: progressScanline 1.5s linear infinite;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.7);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 进度条装饰元素 */
+.cyber-progress-container::before {
+  content: "SYS://";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 255, 255, 0.7);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  z-index: 2;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-progress-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, transparent 0%, transparent 5%, rgba(0, 255, 255, 0.1) 5%, rgba(0, 255, 255, 0.1) 6%, transparent 6%, transparent 94%, rgba(0, 255, 255, 0.1) 94%, rgba(0, 255, 255, 0.1) 95%, transparent 95%),
+    linear-gradient(transparent 0%, transparent 45%, rgba(0, 255, 255, 0.1) 45%, rgba(0, 255, 255, 0.1) 55%, transparent 55%);
+  z-index: 1;
+  pointer-events: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 进度百分比 */
+.cyber-progress-percentage {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00ffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  z-index: 2;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-progress-percentage::after {
+  content: "0%";
+  animation: percentageCounterAnimation 2s steps(10) forwards;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 进度条下方的文字 */
+.loading-text {
+  color: #00ffff;
+  font-size: 1rem;
+  opacity: 0.8;
+  animation: blink 1.5s infinite;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 1px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.loading-text::before {
+  content: "[";
+  margin-right: 5px;
+  color: rgba(255, 0, 255, 0.7);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.loading-text::after {
+  content: "]";
+  margin-left: 5px;
+  color: rgba(255, 0, 255, 0.7);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 进度条动画 */
+@keyframes progressAnimation {
+  0% { width: 0%; }
+  10% { width: 10%; }
+  20% { width: 25%; }
+  40% { width: 40%; }
+  50% { width: 50%; }
+  60% { width: 60%; }
+  80% { width: 80%; }
+  100% { width: 100%; }
+}
+
+/* 进度条扫描线动画 */
+@keyframes progressScanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(30px); }
+}
+
+/* 百分比计数器动画 */
+@keyframes percentageCounterAnimation {
+  0% { content: "0%"; }
+  10% { content: "10%"; }
+  20% { content: "25%"; }
+  40% { content: "40%"; }
+  50% { content: "50%"; }
+  60% { content: "65%"; }
+  80% { content: "85%"; }
+  100% { content: "100%"; }
+}
+
+/* 取消旧的spinner样式 */
+.loading-spinner {
+  display: none;
+}
+
+.spinner {
+  display: none;
+}
+
+/* 动画关键帧 */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    filter: brightness(0.8) drop-shadow(0 0 5px rgba(63, 255, 255, 0.7));
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.2) drop-shadow(0 0 15px rgba(63, 255, 255, 1));
+  }
+  100% {
+    opacity: 0.6;
+    filter: brightness(0.8) drop-shadow(0 0 5px rgba(63, 255, 255, 0.7));
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+  50% {
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 45px #00ffff, 0 0 60px #00ffff;
+  }
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 0.99;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes glitchEffect {
+  0% {
+    clip-path: inset(5% 0 15% 0);
+    transform: translate(-5px);
+  }
+  20% {
+    clip-path: inset(25% 0 55% 0);
+    transform: translate(5px);
+  }
+  40% {
+    clip-path: inset(50% 0 45% 0);
+    transform: translate(-5px);
+  }
+  60% {
+    clip-path: inset(35% 0 5% 0);
+    transform: translate(5px);
+  }
+  80% {
+    clip-path: inset(70% 0 15% 0);
+    transform: translate(-5px);
+  }
+  100% {
+    clip-path: inset(15% 0 65% 0);
+    transform: translate(0);
+  }
+}
+
+/* 应用动画的类 */
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 1s ease-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 1s ease-out;
+}
+
+.animate-glow {
+  animation: glow 3s infinite;
+}
+
+.animate-flicker {
+  animation: flicker 3s linear infinite;
+}
+
+.animate-fadeInUp {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-glitch {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-blink {
+  animation: blink 1.5s infinite;
+}
+
+.animate-glitch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(0, 255, 255, 0.5);
+  animation: scanline 3s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-scanline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 延迟相关类 */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-600 {
+  animation-delay: 600ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+/* FOCHAT标志样式，增强赛博朋克风格 */
+.neon-glow {
+  background: linear-gradient(90deg, #3fffff 30%, #ff00ff 70%, #3fffff 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: cyber-flow 3s linear infinite;
+  position: relative;
+  filter: drop-shadow(0 0 2px rgba(63, 255, 255, 0.5)) drop-shadow(0 0 4px rgba(255, 0, 255, 0.3));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.neon-glow::before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #3fffff 30%, #ff00ff 70%, #3fffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.7;
+  animation: cyber-flow 3s linear infinite;
+  animation-delay: -0.5s;
+  z-index: -1;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.neon-glow::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 2px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ffcc00 30%, #3fffff 70%, #ffcc00 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.5;
+  animation: cyber-flow 3s linear infinite;
+  animation-delay: -1s;
+  z-index: -2;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@keyframes cyber-flow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.neon-text-shadow {
+  text-shadow: 
+    0 0 5px #3fffff,
+    0 0 10px #3fffff,
+    0 0 15px #3fffff,
+    0 0 20px #3fffff,
+    0 0 40px rgba(63, 255, 255, 0.6),
+    0 0 5px #ff00ff,
+    0 0 10px rgba(255, 0, 255, 0.4);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.pink-glow {
+  color: #ff00ff;
+  text-shadow: 
+    0 0 5px #ff00ff,
+    0 0 10px #ff00ff,
+    0 0 20px #ff00ff,
+    0 0 30px #ff00ff;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 移除所有之前添加的复杂效果，保持干净的样式 */
+
+/* 删除这些多余的样式 */
+/* 添加数字扰动效果 */
+.digital-noise {
+  position: relative;
+}
+
+.digital-noise::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 强化发光效果 */
+.fochat-logo .enhanced-glow {
+  animation: enhanced-pulse 2s infinite alternate;
+  filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.7));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@keyframes enhanced-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(0, 255, 255, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 1));
+  }
+}
+
+/* 添加电子干扰动画 */
+.fochat-logo .interference {
+  animation: interference 0.2s steps(2) infinite;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@keyframes interference {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 字母闪烁效果 */
+.letter-flicker:nth-child(2n) {
+  animation: letter-flicker 6s infinite;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.letter-flicker:nth-child(3n) {
+  animation: letter-flicker 8s 1s infinite;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@keyframes letter-flicker {
+  0%, 95%, 100% {
+    opacity: 1;
+  }
+  96%, 99% {
+    opacity: 0.7;
+  }
+}
+
+/* 赛博朋克彩虹色变换 */
+.cyber-rainbow {
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow-shift 3s linear infinite;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@keyframes rainbow-shift {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* 3D翻转效果 */
+.flip-3d {
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.flip-3d span {
+  display: inline-block;
+  transform: translateZ(0);
+  transition: transform 0.3s;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.flip-3d:hover span {
+  animation: cyber-flip 0.8s ease-out forwards;
+}
+
+@keyframes cyber-flip {
+  0% {
+    transform: rotateX(0) translateZ(0);
+  }
+  20% {
+    transform: rotateX(90deg) translateZ(20px);
+  }
+  40% {
+    transform: rotateX(180deg) translateZ(0);
+  }
+  60% {
+    transform: rotateX(270deg) translateZ(20px);
+  }
+  80% {
+    transform: rotateX(360deg) translateZ(0);
+  }
+  100% {
+    transform: rotateX(360deg) translateZ(0);
+  }
+}
+
+/* 像素化效果 */
+@keyframes pixelate {
+  0%, 100% {
+    filter: none;
+  }
+  50% {
+    filter: url('data:image/svg+xml,\
+      <svg xmlns="http://www.w3.org/2000/svg">\
+        <filter id="pixelate">\
+          <feFlood x="4" y="4" height="2" width="2"/>\
+          <feComposite width="8" height="8"/>\
+          <feTile result="a"/>\
+          <feComposite in="SourceGraphic" in2="a" operator="in"/>\
+          <feMorphology operator="dilate" radius="1"/>\
+        </filter>\
+      </svg>#pixelate');
+  }
+}
+
+.pixelate-hover:hover {
+  animation: pixelate 0.6s linear forwards;
+} 
+
+/* 赛博朋克输入框 */
+.cyber-input {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  color: #00ffff;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+.cyber-input::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff);
+  animation: cyber-input-scan 3s linear infinite;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@keyframes cyber-input-scan {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* 赛博朋克按钮基础样式 */
+.cyber-button {
+  position: relative;
+  padding: 0.8em 2em;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9));
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 255, 255, 0.2),
+    transparent
+  );
+  transition: all 0.6s ease;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -2px;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #00ffff,
+    transparent
+  );
+  animation: cyber-line-flow 3s linear infinite;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.cyber-button:hover {
+  border-color: rgba(0, 255, 255, 0.5);
+  box-shadow: 
+    0 0 15px rgba(0, 255, 255, 0.3),
+    inset 0 0 15px rgba(0, 255, 255, 0.2);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+.cyber-button:hover::before {
+  left: 100%;
+}
+
+.cyber-button:active {
+  transform: translateY(1px);
+}
+
+.cyber-button.cyber-button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cyber-button.cyber-button-disabled:hover {
+  border-color: rgba(0, 255, 255, 0.2);
+  box-shadow: none;
+  transform: none;
+}
+
+/* 添加替代内联样式的类 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.modal-content {
+  background-color: #0f172a;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #0ea5e9;
+  max-width: 90%;
+  width: 32rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 标题和页脚样式 */
+.title-glow {
+  text-shadow: 0 0 2px #000, 0 0 5px #3fffff, 0 0 10px #3fffff, 0 0 15px #3fffff, 0 0 20px #3fffff, 0 0 10px #ff00ff;
+  animation: pulse 2s infinite alternate;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.title-pink-glow {
+  text-shadow: 0 0 2px #000, 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.footer-logo-cyan {
+  color: #3fffff;
+  text-shadow: 0 0 2px #000, 0 0 5px #3fffff, 0 0 10px #3fffff;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.footer-logo-pink {
+  color: #ff00ff;
+  text-shadow: 0 0 2px #000, 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 为脉动效果添加动画 */
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 用户个人页样式 */
+.user-profile-graph-bar {
+  width: 100%;
+  background: linear-gradient(to top, #3b82f6, #ec4899);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.user-profile-graph-height {
+  height: var(--bar-height);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.user-profile-progress-bar {
+  width: var(--progress-width);
+  height: 100%;
+  background: linear-gradient(to right, #06b6d4, #ec4899);
+  border-radius: 9999px;
+  transition: all 1s ease;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.user-profile-toggle-button {
+  width: 110px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.user-profile-action-button {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+} 
+
+/* display: block; 时不要加 vertical-align */ 
