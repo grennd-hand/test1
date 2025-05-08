@@ -22,8 +22,8 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/web3_db')
   .catch(err => console.error('数据库连接失败:', err));
 
 // 路由
-app.use('/api/comments', commentRoutes);
-app.use('/api/upload', uploadRoutes);
+// app.use('/api/comments', commentRoutes);
+// app.use('/api/upload', uploadRoutes);
 
 // 错误处理
 app.use(errorHandler);
