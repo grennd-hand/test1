@@ -368,6 +368,14 @@ function App() {
           <div className="cyber-card p-4 md:p-6 mb-6 md:mb-8">
             <h2 className="text-lg md:text-xl font-bold text-cyan-300 mb-4 font-orbitron">脑连接模式<span className="text-pink-400 animate-pulse">_</span></h2>
 
+            {/* 新增名字输入框，移到最上面 */}
+            <input
+              className="cyber-input w-full p-2 mb-3 rounded"
+              placeholder="输入你的名字（可选）"
+              value={newAuthor}
+              onChange={e => setNewAuthor(e.target.value)}
+            />
+
             <div className="mb-4">
               <textarea
                 className="cyber-input w-full p-3 rounded text-base"
@@ -377,14 +385,6 @@ function App() {
                 onChange={(e) => setNewComment(e.target.value)}
               ></textarea>
             </div>
-
-            {/* 新增名字输入框 */}
-            <input
-              className="cyber-input w-full p-2 mb-3 rounded"
-              placeholder="输入你的名字（可选）"
-              value={newAuthor}
-              onChange={e => setNewAuthor(e.target.value)}
-            />
 
             {/* 标签选择 */}
             <div className="mb-4 overflow-x-auto">
