@@ -1,14 +1,37 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
+import mongoose from 'mongoose'
 
-// 内存评论数据，演示用
-let comments: any[] = []
+const MONGODB_URI = process.env.MONGODB_URI as string
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+// 防止多次连接
+let conn: typeof mongoose | null = null
+async function connectDB() {
+  if (conn) return conn
+  conn = await mongoose.connect(MONGODB_URI)
+  return conn
+}
+
+// 定义 Comment schema
+const CommentSchema = new mongoose.Schema({
+  content: String,
+  author: String,
+  createdAt: { type: Date, default: Date.now }
+})
+const Comment = mongoose.models.Comment || mongoose.model('Comment', CommentSchema)
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  await connectDB()
+
   if (req.method === 'GET') {
+    const comments = await Comment.find().sort({ createdAt: -1 })
     res.json(comments)
   } else if (req.method === 'POST') {
-    const comment = req.body
-    comments.push(comment)
+    const { content, author } = req.body
+    if (!content) {
+      res.status(400).json({ msg: '内容不能为空' })
+      return
+    }
+    const comment = await Comment.create({ content, author })
     res.status(201).json(comment)
   } else {
     res.status(405).end()
