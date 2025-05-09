@@ -100,7 +100,7 @@ router.put('/like/:id', async (req, res) => {
     res.json({ likes: comment.likes });
   } catch (error) {
     console.error('点赞失败:', error);
-    res.status(500).json({ message: '点赞失败' });
+    res.status(500).json({ message: '点赞失败', error: error.message });
   }
 });
 
@@ -129,7 +129,7 @@ router.post('/:id/reply', async (req, res) => {
     res.status(201).json(comment.replies[comment.replies.length - 1]);
   } catch (error) {
     console.error('回复失败:', error);
-    res.status(500).json({ message: '回复失败' });
+    res.status(500).json({ message: '回复失败', error: error.message });
   }
 });
 
@@ -154,7 +154,7 @@ router.put('/:commentId/reply/:replyId/like', async (req, res) => {
     res.json({ likes: reply.likes });
   } catch (error) {
     console.error('点赞回复失败:', error);
-    res.status(500).json({ message: '点赞回复失败' });
+    res.status(500).json({ message: '点赞回复失败', error: error.message });
   }
 });
 
@@ -171,7 +171,7 @@ router.delete('/:id', async (req, res) => {
     res.json({ message: '评论已删除' });
   } catch (error) {
     console.error('删除评论失败:', error);
-    res.status(500).json({ message: '删除评论失败' });
+    res.status(500).json({ message: '删除评论失败', error: error.message });
   }
 });
 
