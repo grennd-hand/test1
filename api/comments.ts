@@ -20,20 +20,25 @@ const CommentSchema = new mongoose.Schema({
 const Comment = mongoose.models.Comment || mongoose.model('Comment', CommentSchema)
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  await connectDB()
+  try {
+    await connectDB()
 
-  if (req.method === 'GET') {
-    const comments = await Comment.find().sort({ createdAt: -1 })
-    res.json(comments)
-  } else if (req.method === 'POST') {
-    const { content, author } = req.body
-    if (!content) {
-      res.status(400).json({ msg: '内容不能为空' })
-      return
+    if (req.method === 'GET') {
+      const comments = await Comment.find().sort({ createdAt: -1 })
+      res.json(comments)
+    } else if (req.method === 'POST') {
+      const { content, author } = req.body
+      if (!content) {
+        res.status(400).json({ msg: '内容不能为空' })
+        return
+      }
+      const comment = await Comment.create({ content, author })
+      res.status(201).json(comment)
+    } else {
+      res.status(405).end()
     }
-    const comment = await Comment.create({ content, author })
-    res.status(201).json(comment)
-  } else {
-    res.status(405).end()
+  } catch (error: any) {
+    // 全局异常捕获，返回标准 JSON
+    res.status(500).json({ message: '服务器内部错误', error: error.message || String(error) })
   }
 } 
