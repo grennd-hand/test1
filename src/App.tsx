@@ -40,10 +40,10 @@ type Reply = {
 }
 
 // 本地存储的键名
-const STORAGE_KEY = 'fochat_comments';
+const STORAGE_KEY = 'jfsjjy_comments';
 
 // 本地 token 存储键
-const LOCAL_TOKEN_KEY = 'fochat_local_token';
+const LOCAL_TOKEN_KEY = 'jfsjjy_local_token';
 
 // 获取或生成本地 token
 function getLocalToken() {
@@ -69,6 +69,7 @@ function App() {
   const [replyContent, setReplyContent] = useState('');
   const [isLoadingComments, setIsLoadingComments] = useState(false);
   const [newAuthor, setNewAuthor] = useState('');
+  const [showPostModal, setShowPostModal] = useState(false);
 
   const availableTags = ["比特币", "以太坊", "NFT", "DeFi", "GameFi", "链游", "元宇宙", "交易所"];
   const emojis = ["😂", "😭", "🤔", "👍", "👎", "🚀", "💰", "💎", "🌙"];
@@ -298,9 +299,9 @@ function App() {
       <div className={`loading-container bg-black ${fadeOut ? 'fadeOut' : ''}`}>
         <div className="loading-content">
           <div className="loading-logo">
-            <span className="cyber-text">Fochat吐槽论坛</span>
+            <span className="cyber-text">将Fo送进监狱</span>
             <div className="text-xs text-cyan-500 font-orbitron mt-2 text-center animate-blink">
-              v1.0.4_beta //赛博空间吐槽系统
+              v1.0.4_beta //赛博监狱的写入系统
             </div>
           </div>
 
@@ -354,99 +355,16 @@ function App() {
               </div>
 
               <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-orbitron relative text-center px-12 sm:px-0">
-                <span className="text-cyan-300 animate-glow whitespace-nowrap title-glow">Fochat</span>
-                <span className="text-pink-400 whitespace-nowrap title-pink-glow">吐槽论坛</span>
+                <span className="text-cyan-300 animate-glow whitespace-nowrap title-glow">将Fo送</span>
+                <span className="text-pink-400 whitespace-nowrap title-pink-glow">进监狱</span>
                 <span className="absolute -inset-x-3 -inset-y-2 bg-gradient-to-r from-cyan-500/5 to-pink-500/5 blur -z-10"></span>
               </div>
-              <div className="text-sm md:text-base text-cyan-300 mt-2 text-center px-4">畅所欲言的加密世界，区块链爱好者的理想家园</div>
+              <div className="text-sm md:text-base text-cyan-300 mt-2 text-center px-4">所有亏损者集合，把Fo关进监狱</div>
             </div>
           </div>
         </header>
 
         <main className="container mx-auto px-4 py-6 md:py-8 max-w-4xl">
-          {/* 发布评论区域 */}
-          <div className="cyber-card p-4 md:p-6 mb-6 md:mb-8">
-            <h2 className="text-lg md:text-xl font-bold text-cyan-300 mb-4 font-orbitron">脑连接模式<span className="text-pink-400 animate-pulse">_</span></h2>
-
-            {/* 新增名字输入框，移到最上面 */}
-            <input
-              className="cyber-input w-full p-2 mb-3 rounded"
-              placeholder="输入你的名字（可选）"
-              value={newAuthor}
-              onChange={e => setNewAuthor(e.target.value)}
-            />
-
-            <div className="mb-4">
-              <textarea
-                className="cyber-input w-full p-3 rounded text-base"
-                rows={4}
-                placeholder="需要脑机接口验证..."
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-              ></textarea>
-            </div>
-
-            {/* 标签选择 */}
-            <div className="mb-4 overflow-x-auto">
-              <div className="text-sm text-cyan-300 mb-2 font-orbitron">神经触点：</div>
-              <div className="flex flex-wrap gap-2 min-w-max pb-2">
-                {availableTags.map((tag: string, idx: number) => (
-                  <button
-                    key={`tag-${tag}-${idx}`}
-                    onClick={() => toggleTag(tag)}
-                    className={`px-2 py-1 text-xs rounded border ${
-                      selectedTags.includes(tag)
-                        ? 'bg-cyan-900/50 border-cyan-400 text-cyan-300 shadow-sm shadow-cyan-400/30'
-                        : 'border-cyan-800/30 text-cyan-400 hover:border-cyan-600'
-                    } transition-all duration-300`}
-                  >
-                    #{tag}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 表情和发布按钮 */}
-            <div className="flex justify-between items-center">
-              <div className="relative">
-                <button
-                  className="text-cyan-400 hover:text-cyan-300"
-                  onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-                >
-                  <span className="text-xl">😊</span>
-                </button>
-
-                {showEmojiPicker && (
-                  <div className="absolute bottom-10 left-0 bg-black/90 border border-cyan-800 p-2 rounded shadow-lg shadow-cyan-900/30 z-50 flex flex-wrap gap-2 w-64">
-                    {emojis.map(emoji => (
-                      <button
-                        key={emoji}
-                        className="text-2xl hover:bg-cyan-900/40 w-10 h-10 rounded flex items-center justify-center"
-                        onClick={() => {
-                          setNewComment(prev => prev + emoji);
-                          setShowEmojiPicker(false);
-                        }}
-                      >
-                        {emoji}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <button
-                className={`cyber-button ${
-                  !newComment.trim()
-                    ? 'cyber-button-disabled'
-                    : ''
-                }`}
-                onClick={handleSubmit}
-              >
-                <span className="font-orbitron tracking-wider">发射</span>
-              </button>
-            </div>
-          </div>
-
           {/* 评论列表 */}
           <div className="flex flex-col space-y-4 md:space-y-6">
             {isLoadingComments ? (
@@ -585,14 +503,88 @@ function App() {
           </div>
         </main>
 
+        {/* 悬浮发帖按钮 */}
+        <button
+          className="fixed bottom-8 right-8 z-50 w-14 h-14 flex items-center justify-center rounded-full text-3xl font-orbitron cyberpunk-plus-btn transition-all duration-200"
+          onClick={() => setShowPostModal(true)}
+        >
+           ＋
+        </button>
+
+        {/* 发帖弹窗 */}
+        {showPostModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+            <div className="bg-gray-900 rounded-lg p-6 w-full max-w-md relative shadow-2xl border border-cyan-800">
+              <button
+                className="absolute top-2 right-2 text-cyan-400 hover:text-pink-400 text-2xl"
+                onClick={() => setShowPostModal(false)}
+              >
+                ×
+              </button>
+              <h2 className="text-lg md:text-xl font-bold text-cyan-300 mb-4 font-orbitron">脑连接模式<span className="text-pink-400 animate-pulse">_</span></h2>
+              <input
+                className="cyber-input w-full p-2 mb-3 rounded"
+                placeholder="输入你的名字（可选）"
+                value={newAuthor}
+                onChange={e => setNewAuthor(e.target.value)}
+              />
+              <div className="mb-4">
+                <textarea
+                  className="cyber-input w-full p-3 rounded text-base"
+                  rows={4}
+                  placeholder="需要脑机接口验证..."
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                ></textarea>
+              </div>
+              {/* 表情和发布按钮 */}
+              <div className="flex justify-between items-center">
+                <div className="relative">
+                  <button
+                    className="text-cyan-400 hover:text-cyan-300"
+                    onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                  >
+                    <span className="text-xl">😊</span>
+                  </button>
+                  {showEmojiPicker && (
+                    <div className="absolute bottom-10 left-0 bg-black/90 border border-cyan-800 p-2 rounded shadow-lg shadow-cyan-900/30 z-50 flex flex-wrap gap-2 w-64">
+                      {emojis.map(emoji => (
+                        <button
+                          key={emoji}
+                          className="text-2xl hover:bg-cyan-900/40 w-10 h-10 rounded flex items-center justify-center"
+                          onClick={() => {
+                            setNewComment(prev => prev + emoji);
+                            setShowEmojiPicker(false);
+                          }}
+                        >
+                          {emoji}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <button
+                  className={`cyber-button ${!newComment.trim() ? 'cyber-button-disabled' : ''}`}
+                  onClick={async () => {
+                    await handleSubmit();
+                    setShowPostModal(false);
+                  }}
+                >
+                  <span className="font-orbitron tracking-wider">发射</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         <footer className="mt-16 text-center border-t border-cyan-900/30 py-6 bg-black/50">
           <div className="container mx-auto max-w-4xl">
             <p className="text-cyan-400 mb-1">© {new Date().getFullYear()}
               <span className="font-orbitron mx-2">
-                <span className="footer-logo-cyan">Fochat</span>
-                <span className="footer-logo-pink">吐槽论坛</span>
+                <span className="footer-logo-cyan">将Fo送进</span>
+                <span className="footer-logo-pink">进监狱</span>
               </span>
-              - 赛博空间的神经元集合体
+              - 亏损者的意志结合，将fo送进监狱
             </p>
             <p className="text-xs text-cyan-500">数字荒原中的吐槽绿洲</p>
           </div>

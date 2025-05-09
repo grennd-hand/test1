@@ -979,3 +979,18 @@ body {
 } 
 
 /* display: block; 时不要加 vertical-align */ 
+
+.cyberpunk-plus-btn {
+  background: linear-gradient(135deg, #101c24 60%, #2d1a3a 100%);
+  border: 1.5px solid #3fffff;
+  color: #3fffff;
+  box-shadow: 0 2px 8px 0 #0ff2, 0 0 0 0 #fff0;
+  text-shadow: 0 0 6px #3fffff, 0 0 2px #fff;
+}
+.cyberpunk-plus-btn:hover {
+  border-color: #7fffd4;
+  color: #7fffd4;
+  box-shadow: 0 0 12px 2px #3fffff55;
+  background: linear-gradient(135deg, #16232b 60%, #3a2150 100%);
+  text-shadow: 0 0 12px #7fffd4, 0 0 4px #fff;
+} 
